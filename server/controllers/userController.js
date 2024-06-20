@@ -31,6 +31,8 @@ const userController = {
 
             res.cookie("refreshToken", refreshToken, {
                 httpOnly: true,
+                secure: process.env.NODE_ENV === 'production', 
+                sameSite: 'Strict', 
                 path: `/api/users/refreshtoken`
             })
 
@@ -74,6 +76,8 @@ const userController = {
 
             res.cookie("refreshToken", refreshToken, {
                 httpOnly: true,
+                secure: process.env.NODE_ENV === 'production', 
+                sameSite: 'Strict', 
                 path: `/api/users/refreshtoken`
             })
 
@@ -85,7 +89,10 @@ const userController = {
     },
     logout: async(req, res) => {
         try {
-            res.clearCookie("refreshToken", { path: `/api/users/refreshtoken` })
+            res.clearCookie("refreshToken", {
+                secure: process.env.NODE_ENV === 'production', 
+                sameSite: 'Strict', 
+                path: `/api/users/refreshtoken` })
             res.status(200).json({ message: "You have been successfully logged out." }) 
         } catch (err) {
             res.status(500).json({ message: err.message })
