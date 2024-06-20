@@ -28,7 +28,7 @@ const Product = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const res = await axios.delete(`/api/products/${product._id}`, {
+          const res = await axios.delete(`${process.env.REACT_APP_API_URL}/api/products/${product._id}`, {
             headers: { Authorization: token }
           })
           // toast.success(res.data.message);
@@ -50,7 +50,7 @@ const Product = () => {
   const deleteProductImage = async (images) => {
     try {
       await Promise.all(images.map(async image => {
-        const res = await axios.post("/api/upload/destroy", { public_id: image.public_id }, {
+        const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/upload/destroy`, { public_id: image.public_id }, {
           headers: { Authorization: token }
         })
         // console.log(res.data.message);

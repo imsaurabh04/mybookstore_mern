@@ -11,17 +11,18 @@ const ProductAPI = () => {
     const limit = 8;
 
     const getAllProducts = async() => {
-      const res = await axios.get(`/api/products`);
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/products`);
       setTotalPages(Math.ceil(res.data.productList.length / limit));
     }
 
     const getProductsByLimit = async() => {
         const page = Math.min(currentPage + 1, totalPages);
-        const res = await axios.get(`/api/products?limit=${limit}&page=${page}`);
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/products?limit=${limit}&page=${page}`);
         setProducts(res.data.productList);
         setLoading(false);
     }
 
+    
     useEffect(() => {
       const main = async() => {
         await getAllProducts();

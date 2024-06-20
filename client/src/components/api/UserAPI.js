@@ -12,7 +12,7 @@ const UserAPI = (token) => {
 
     const getUserInfo = async() => {
         try {
-            const res = await axios.get("/api/users/userinfo", {
+            const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/users/userinfo`, {
                 headers: { Authorization: token }
             })
             setActiveUser(res.data);

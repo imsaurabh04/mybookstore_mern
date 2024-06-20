@@ -49,7 +49,7 @@ const UpsertProduct = () => {
 
     try {
       // store images to cloudinary 
-      const uploadData = await axios.post("/api/upload", imagesFormData, {
+      const uploadData = await axios.post(`${process.env.REACT_APP_API_URL}/api/upload`, imagesFormData, {
         headers: { Authorization: token },
         'Content-Type': 'multipart/form-data'
       })
@@ -59,14 +59,14 @@ const UpsertProduct = () => {
         // delete images from cloudinary
         await deleteProductImage(productImagesToBeDeleted);
         // update product
-        const updateData = await axios.put(`/api/products/${formData._id}`, updatedFormData, {
+        const updateData = await axios.put(`${process.env.REACT_APP_API_URL}/api/products/${formData._id}`, updatedFormData, {
           headers: { Authorization: token },
           'Content-Type': 'multipart/form-data'
         });
         toast.success(updateData.data.message);
       } else {
         // create a new product
-        const createData = await axios.post(`/api/products`, updatedFormData, {
+        const createData = await axios.post(`${process.env.REACT_APP_API_URL}/api/products`, updatedFormData, {
           headers: { Authorization: token },
           'Content-Type': 'multipart/form-data'
         });
@@ -83,7 +83,7 @@ const UpsertProduct = () => {
   const deleteProductImage = async (images) => {
     try {
       await Promise.all(images.map(async image => {
-        const res = await axios.post("/api/upload/destroy", { public_id: image.public_id }, {
+        const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/upload/destroy`, { public_id: image.public_id }, {
           headers: { Authorization: token }
         })
         // toast.success(res.data.message);

@@ -15,7 +15,7 @@ const CreateCategory = () => {
 
     try {
         // create a new category
-        const createData = await axios.post(`/api/categories`, {name}, {
+        const createData = await axios.post(`${process.env.REACT_APP_API_URL}/api/categories`, {name}, {
           headers: { Authorization: token },
         });
         toast.success(createData.data.message);

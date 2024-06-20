@@ -3,6 +3,7 @@ const connectDb = require("./middleware/connectDb");
 const cookieParser = require('cookie-parser');
 require('dotenv').config();
 const fileUpload = require('express-fileupload');
+const cors = require('cors');
 
 const userRouter = require("./routes/userRouter");
 const categoryRouter = require("./routes/categoryRouter");
@@ -12,6 +13,14 @@ const upload = require("./routes/upload");
 const PORT = process.env.PORT || 8000;
 
 const app = express();
+
+const corsOptions = {
+    origin: 'https://mybookstore-mern.netlify.app',
+    optionsSuccessStatus: 200
+};
+  
+// Enable CORS
+app.use(cors(corsOptions));
 
 // Middleware to parse JSON
 app.use(express.json());

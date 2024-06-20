@@ -27,7 +27,7 @@ const Category = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const res = await axios.delete(`/api/categories/${categoryId}`, {
+          const res = await axios.delete(`${process.env.REACT_APP_API_URL}/api/categories/${categoryId}`, {
             headers: { Authorization: token }
           })
           // toast.success(res.data.message);

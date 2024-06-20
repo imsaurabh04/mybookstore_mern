@@ -11,13 +11,13 @@ const CategoryAPI = () => {
     const limit = 8;
 
     const getAllCategories = async() => {
-      const res = await axios.get(`/api/categories`);
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/categories`);
       setTotalPages(Math.ceil(res.data.categoryList.length / limit));
     }
 
     const getCategoriesByLimit = async() => {
         const page = Math.min(currentPage + 1, totalPages);
-        const res = await axios.get(`/api/categories?limit=${limit}&page=${page}`);
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/categories?limit=${limit}&page=${page}`);
         setCategories(res.data.categoryList);
         setLoading(false);
     }

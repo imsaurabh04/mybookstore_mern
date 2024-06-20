@@ -20,7 +20,7 @@ const Header = () => {
 
     const handleLogOut = async() => {
         try {
-            const res = await axios.get("/api/users/logout");
+            const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/users/logout`);
             localStorage.clear();
             setIsLoggedIn(false);
             setIsAdmin(false);

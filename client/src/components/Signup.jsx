@@ -26,7 +26,7 @@ const Signup = () => {
     e.preventDefault();
 
     try {
-        const res = await axios.post("/api/users/signup", formData);
+        const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/users/signup`, formData);
         localStorage.setItem("access-token", res.data.accessToken);
         toast.success("Your account has been created successfully.");
         setTimeout(() => {
