@@ -31,7 +31,7 @@ const userController = {
 
             res.cookie("refreshToken", refreshToken, {
                 httpOnly: true,
-                path: `${process.env.BASE_URL}/api/users/refreshtoken`
+                path: `/api/users/refreshtoken`
             })
 
             res.status(200).json({ accessToken })
@@ -74,7 +74,7 @@ const userController = {
 
             res.cookie("refreshToken", refreshToken, {
                 httpOnly: true,
-                path: `${process.env.BASE_URL}/api/users/refreshtoken`
+                path: `/api/users/refreshtoken`
             })
 
             res.status(200).json({ accessToken })
@@ -85,7 +85,7 @@ const userController = {
     },
     logout: async(req, res) => {
         try {
-            res.clearCookie("refreshToken", { path: `${process.env.BASE_URL}/api/users/refreshtoken` })
+            res.clearCookie("refreshToken", { path: `/api/users/refreshtoken` })
             res.status(200).json({ message: "You have been successfully logged out." }) 
         } catch (err) {
             res.status(500).json({ message: err.message })

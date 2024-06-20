@@ -12,7 +12,7 @@ export const DataProvider = ({children}) => {
 
     const refreshToken = async() => {
       try {
-        const res = await axios.post("/api/users/refreshtoken");
+        const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/users/refreshtoken`);
         setToken(res.data.accessToken);
       } catch (err) {
         console.log(err.response.data.message);
