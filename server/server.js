@@ -16,6 +16,7 @@ const app = express();
 
 const corsOptions = {
     origin: 'https://mybookstore-mern.netlify.app',
+    credentials: true,
     optionsSuccessStatus: 200
 };
   
